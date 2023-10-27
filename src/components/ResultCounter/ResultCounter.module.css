@@ -1,0 +1,11 @@
+.screen_value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.value {
+    font-weight: 900;
+    font-size: 72px;
+}
