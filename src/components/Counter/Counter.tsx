@@ -14,6 +14,27 @@ export const Counter = () => {
     const [currentValue, setCurrentValue] = useState<number>(startValue)
     const [screen, setScreen] = useState<ScreenType>('tooltip')
 
+    //localstorage
+    useEffect(() => {
+        const getMaxValue = localStorage.getItem('maxValue');
+        const getStartValue = localStorage.getItem('startValue');
+
+        if (getMaxValue) {
+            const parsedMaxValue = JSON.parse(getMaxValue);
+            setMaxValue(parsedMaxValue);
+        }
+
+        if (getStartValue) {
+            const parsedStartValue = JSON.parse(getStartValue);
+            setStartValue(parsedStartValue);
+        }
+    }, []);
+    useEffect(() => {
+        localStorage.setItem('maxValue', JSON.stringify(maxValue));
+        localStorage.setItem('startValue', JSON.stringify(startValue));
+    }, [maxValue, startValue]);
+
+
     useEffect(() => {
         setScreen(isMaxValueValid || isStartValueValid ? 'error' : 'tooltip')
     }, [startValue, maxValue])

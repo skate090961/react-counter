@@ -23,4 +23,5 @@
 .error_message {
     color: var(--error-color);
     font-size: 36px;
+    font-weight: bold;
 }
