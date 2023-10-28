@@ -8,6 +8,14 @@
     margin-top: 150px;
 }
 
+@media (max-width: 920px) {
+    .main {
+        grid-template-columns: 0.5fr;
+        grid-row-gap: 50px;
+        justify-content: center;
+    }
+}
+
 .counter {
     border: 2px solid var(--primary-color);
     border-radius: 5px;

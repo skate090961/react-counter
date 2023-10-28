@@ -1,9 +1,9 @@
-import React, {ChangeEvent} from 'react'
+import React from 'react'
 import s from './SetCounter.module.css'
 import commonStyle from "../Counter/Counter.module.css";
 import {Button} from "../UI/Button/Button";
-import {AiOutlineClear} from "react-icons/ai";
 import {ScreenType} from "../Counter/Counter";
+import {SettingForm} from "./SettingForm/SettingForm";
 
 type SetCounterPopsType = {
     maxValue: number
@@ -32,45 +32,25 @@ export const SetCounter: React.FC<SetCounterPopsType> = ({
                                                              isStartValueValid
                                                          }) => {
     const isSetDisabled = screen === 'value' || screen === 'error'
-    const isInputValueStyle = (isValid: boolean) => isValid ? `${s.input} ${s.input_error}` : s.input
-
-    const maxValueUpdateHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        updateMaxValue(Number(e.currentTarget.value))
-    }
-    const startValueUpdateHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        updateStartValue(Number(e.currentTarget.value))
-    }
 
     return (
         <div className={commonStyle.counter}>
             <div className={commonStyle.screen}>
-                <div className={s.screen_form}>
-                    <div className={s.form_group}>
-                        <span className={s.label}>start value:</span>
-                        <div className={s.input_svg}>
-                            <input
-                                value={startValue}
-                                onChange={startValueUpdateHandler}
-                                className={isInputValueStyle(isStartValueValid)}
-                                type="number"
-                            />
-                            <div>
-                                <AiOutlineClear className={s.clear_icon} size={'30px'} onClick={clearStartValue}/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={s.form_group}>
-                        <span className={s.label}>max value:</span>
-                        <div className={s.input_svg}>
-                            <input
-                                value={maxValue}
-                                onChange={maxValueUpdateHandler}
-                                className={isInputValueStyle(isMaxValueValid)}
-                                type="number"
-                            />
-                            <AiOutlineClear className={s.clear_icon} size={'30px'} onClick={clearMaxValue}/>
-                        </div>
-                    </div>
+                <div className={s.settings_form}>
+                    <SettingForm
+                        formName={'start value'}
+                        value={startValue}
+                        onChangeValue={updateStartValue}
+                        onClickClear={clearStartValue}
+                        isValid={isStartValueValid}
+                    />
+                    <SettingForm
+                        formName={'max value'}
+                        value={maxValue}
+                        onChangeValue={updateMaxValue}
+                        onClickClear={clearMaxValue}
+                        isValid={isMaxValueValid}
+                    />
                 </div>
             </div>
             <div className={commonStyle.buttons}>

@@ -1,53 +1,5 @@
-.screen_form {
+.settings_form {
     display: flex;
     flex-direction: column;
     gap: 30px;
-}
-
-.form_group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.label {
-    font-size: 26px;
-}
-
-.input {
-    font-size: 16px;
-    text-align: center;
-    padding: 8px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    width: 150px;
-    border: none;
-}
-
-.input_error {
-    background-color: var(--error-bg-color);
-    outline: 2px solid var(--error-color);
-}
-
-.input_error.input:focus {
-    outline: 2px solid var(--error-color);
-}
-
-.input:focus {
-    outline: 2px solid var(--primary-color);
-}
-
-.input_svg {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.clear_icon {
-    cursor: pointer;
-}
-
-.clear_icon:active {
-    color: var(--active-button-color);
-    user-select: none;
 }
