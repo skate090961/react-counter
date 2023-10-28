@@ -24,6 +24,15 @@
     border: none;
 }
 
+.input_error {
+    background-color: var(--error-bg-color);
+    outline: 2px solid var(--error-color);
+}
+
+.input_error.input:focus {
+    outline: 2px solid var(--error-color);
+}
+
 .input:focus {
     outline: 2px solid var(--primary-color);
 }

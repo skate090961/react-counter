@@ -9,3 +9,18 @@
     font-weight: 900;
     font-size: 72px;
 }
+
+.max_value {
+    font-size: 92px;
+    color: var(--error-color);
+}
+
+.tooltip_message {
+    font-size: 32px;
+    text-align: center;
+}
+
+.error_message {
+    color: var(--error-color);
+    font-size: 36px;
+}
