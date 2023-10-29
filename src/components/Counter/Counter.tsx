@@ -11,7 +11,7 @@ export const Counter = () => {
 
     const [startValue, setStartValue] = useState<number>(START_VALUE)
     const [maxValue, setMaxValue] = useState<number>(MAX_VALUE)
-    const [currentValue, setCurrentValue] = useState<number>(startValue)
+    const [currentValue, setCurrentValue] = useState<number>(0)
     const [screen, setScreen] = useState<ScreenType>('tooltip')
 
     //localstorage
@@ -28,12 +28,7 @@ export const Counter = () => {
             const parsedStartValue = JSON.parse(getStartValue);
             setStartValue(parsedStartValue);
         }
-    }, []);
-    useEffect(() => {
-        localStorage.setItem('maxValue', JSON.stringify(maxValue));
-        localStorage.setItem('startValue', JSON.stringify(startValue));
-    }, [maxValue, startValue]);
-
+    }, [])
 
     useEffect(() => {
         setScreen(isMaxValueValid || isStartValueValid ? 'error' : 'tooltip')
@@ -45,6 +40,8 @@ export const Counter = () => {
     const setSettings = () => {
         setCurrentValue(startValue)
         setScreen('value')
+        localStorage.setItem('maxValue', JSON.stringify(maxValue));
+        localStorage.setItem('startValue', JSON.stringify(startValue));
     }
     const incValue = () => {
         setCurrentValue(prevState => prevState + 1)
@@ -66,7 +63,7 @@ export const Counter = () => {
     }
 
     return (
-        <div className={s.main}>
+        <main className={s.main}>
             <SetCounter
                 startValue={startValue}
                 maxValue={maxValue}
@@ -89,6 +86,6 @@ export const Counter = () => {
                 incValue={incValue}
                 resetValue={resetValue}
             />
-        </div>
+        </main>
     )
 }
