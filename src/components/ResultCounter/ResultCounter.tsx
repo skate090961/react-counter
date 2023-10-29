@@ -3,22 +3,18 @@ import s from './ResultCounter.module.css'
 import commonStyle from '../Counter/Counter.module.css'
 import {Button} from "../UI/Button/Button";
 import {ScreenType} from "../Counter/Counter";
+import {incCurrentValueAC, resetCurrentValueAC} from "../../store/counterReducer/counterReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {RootReducerType} from "../../store/store";
 
-type ResultCounterPopsType = {
-    currentValue: number
-    maxValue: number
-    screen: ScreenType
-    incValue: () => void
-    resetValue: () => void
-}
+export const ResultCounter = () => {
+    const maxValue = useSelector<RootReducerType, number>(state => state.counter.maxValue)
+    const screen = useSelector<RootReducerType, ScreenType>(state => state.counter.screen)
+    const currentValue = useSelector<RootReducerType, number>(state => state.counter.currentValue)
+    const dispatch = useDispatch()
+    const incValue = () => dispatch(incCurrentValueAC(1))
+    const resetValue = () => dispatch(resetCurrentValueAC())
 
-export const ResultCounter: React.FC<ResultCounterPopsType> = ({
-                                                                   incValue,
-                                                                   resetValue,
-                                                                   screen,
-                                                                   currentValue,
-                                                                   maxValue
-                                                               }) => {
     const isDisableButtons = screen === 'tooltip' || screen === 'error'
 
     const isCurrentMaxValue = maxValue === currentValue
