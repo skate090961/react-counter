@@ -3,7 +3,10 @@ import {
     counterReducer,
     CounterStateType,
     incCurrentValueAC,
-    resetCurrentValueAC, resetMaxValueAC, resetStartValueAC, updateMaxValueAC,
+    resetMaxValueAC,
+    resetStartValueAC,
+    updateCurrentValueAC,
+    updateMaxValueAC,
     updateStartValueAC
 } from "./counterReducer";
 
@@ -23,12 +26,6 @@ test('current value of counter should be increment correctly', () => {
     expect(endState.currentValue).toBe(8)
 })
 
-test('current value of counter should be reset correctly', () => {
-    const endState = counterReducer(counterState, resetCurrentValueAC())
-    expect(endState.currentValue).toBe(5)
-    expect(endState.startValue).toBe(5)
-})
-
 test('start value of counter should be update', () => {
     const newValue = 100500
     const endState = counterReducer(counterState, updateStartValueAC(newValue))
@@ -41,6 +38,12 @@ test('max value of counter should be update', () => {
     const endState = counterReducer(counterState, updateMaxValueAC(newValue))
     expect(endState.maxValue).toBe(newValue)
     expect(endState.startValue).toBe(5)
+})
+
+test('current value of counter should be update', () => {
+    const endState = counterReducer(counterState, updateCurrentValueAC())
+    expect(endState.startValue).toBe(counterState.startValue)
+    expect(endState.maxValue).toBe(10)
 })
 
 test('screen of counter should be changed', () => {

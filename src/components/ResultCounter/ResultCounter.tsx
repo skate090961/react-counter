@@ -3,7 +3,7 @@ import s from './ResultCounter.module.css'
 import commonStyle from '../Counter/Counter.module.css'
 import {Button} from "../UI/Button/Button";
 import {ScreenType} from "../Counter/Counter";
-import {incCurrentValueAC, resetCurrentValueAC} from "../../store/counterReducer/counterReducer";
+import {incCurrentValueAC, updateCurrentValueAC} from "../../store/counterReducer/counterReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootReducerType} from "../../store/store";
 
@@ -13,7 +13,7 @@ export const ResultCounter = () => {
     const currentValue = useSelector<RootReducerType, number>(state => state.counter.currentValue)
     const dispatch = useDispatch()
     const incValue = () => dispatch(incCurrentValueAC(1))
-    const resetValue = () => dispatch(resetCurrentValueAC())
+    const resetValue = () => dispatch(updateCurrentValueAC())
 
     const isDisableButtons = screen === 'tooltip' || screen === 'error'
 
