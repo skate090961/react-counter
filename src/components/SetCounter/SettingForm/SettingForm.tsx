@@ -10,7 +10,7 @@ type SettingFormPropsType = {
     isValid: boolean
 }
 
-export const SettingForm: React.FC<SettingFormPropsType> = ({
+const SettingForm: React.FC<SettingFormPropsType> = ({
                                                                 formName,
                                                                 value,
                                                                 onChangeValue,
@@ -40,3 +40,5 @@ export const SettingForm: React.FC<SettingFormPropsType> = ({
         </div>
     )
 }
+
+export default React.memo(SettingForm)

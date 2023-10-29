@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import s from './SetCounter.module.css'
 import commonStyle from "../Counter/Counter.module.css";
-import {Button} from "../UI/Button/Button";
+import Button from "../UI/Button/Button";
 import {ScreenType} from "../Counter/Counter";
-import {SettingForm} from "./SettingForm/SettingForm";
+import SettingForm from "./SettingForm/SettingForm";
 import {useDispatch, useSelector} from "react-redux";
 import {
     changeScreenAC,
@@ -26,16 +26,16 @@ export const SetCounter = () => {
     }, [startValue, maxValue])
 
     const dispatch = useDispatch()
-    const setSettings = () => {
+    const setSettings = useCallback(() => {
         dispatch(updateCurrentValueAC())
         dispatch(changeScreenAC('value'))
         localStorage.setItem('maxValue', JSON.stringify(maxValue));
         localStorage.setItem('startValue', JSON.stringify(startValue));
-    }
-    const updateMaxValue = (value: number) => dispatch(updateMaxValueAC(value))
-    const updateStartValue = (value: number) => dispatch(updateStartValueAC(value))
-    const clearStartValue = () => dispatch(resetStartValueAC())
-    const clearMaxValue = () => dispatch(resetMaxValueAC())
+    }, [dispatch])
+    const updateMaxValue = useCallback((value: number) => dispatch(updateMaxValueAC(value)), [dispatch])
+    const updateStartValue = useCallback((value: number) => dispatch(updateStartValueAC(value)), [dispatch])
+    const clearStartValue = useCallback(() => dispatch(resetStartValueAC()), [dispatch])
+    const clearMaxValue = useCallback(() => dispatch(resetMaxValueAC()), [dispatch])
 
     const isMaxValueValid = maxValue <= 0 || startValue === maxValue
     const isStartValueValid = startValue < 0 || startValue >= maxValue
